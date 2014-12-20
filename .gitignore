@@ -17,6 +17,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#Eclipse metadata files
+.metadata
 # =========================
 # Operating System Files
 # =========================
