@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="eventCategories">
+        <item>01|JAN</item>
+       	<item>02|FEB</item>
+       	<item>03|MAR</item>
+       	<item>04|APR</item>
+       	<item>05|MAY</item>
+       	<item>06|JUN</item>
+       	<item>07|JUL</item>
+       	<item>08|AUG</item>
+       	<item>09|SEP</item>
+       	<item>10|OCT</item>
+       	<item>11|NOV</item>
+       	<item>12|DEC</item>
+    </string-array>
+    
+    
+    <string-array name="facilityCategories">
+        <item>01|Arenas</item>
+       	<item>02|Baseball</item>
+       	<item>03|Basketball</item>
+       	<item>04|CommCenter</item>
+       	<item>05|CommGarden</item>
+       	<item>06|CommPool</item>
+       	<item>07|Football</item>
+       	<item>08|Mul-UsePad</item>
+       	<item>09|IceRink</item>
+       	<item>10|Skateboard</item>
+       	<item>11|Soccer</item>
+       	<item>12|SwingSet</item>
+       	<item>13|Tennis</item>
+       	<item>14|WadingPool</item>
+    </string-array>
+    
+ 
+</resources>

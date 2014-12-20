@@ -19,6 +19,9 @@ $RECYCLE.BIN/
 
 #Eclipse metadata files
 .metadata
+
+#Java class files
+*.class
 # =========================
 # Operating System Files
 # =========================

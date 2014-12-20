@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    android:id="@id/facilitydetail_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <RelativeLayout
+        android:id="@id/facilitydetail_titlebar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/image_titlebar_background" >
+
+        <TextView
+            android:id="@id/facilitydetail_titlebar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14.0dip"
+            android:gravity="center"
+            android:text="Mustang Centre"
+            android:textColor="@color/white"
+            android:textSize="18.0sp" />
+    </RelativeLayout>
+
+    <!-- <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/facilitydetail_titlebar_layout"
+        android:layout_marginTop="-16dip"
+        class="com.google.android.gms.maps.MapFragment"
+        map:cameraBearing="45"
+        map:cameraTargetLat="25.033611"
+        map:cameraTargetLng="121.565000"
+        map:cameraTilt="0"        
+        map:cameraZoom="15"
+        map:mapType="normal"
+        map:uiCompass="true"
+        map:uiRotateGestures="true"
+        map:uiScrollGestures="true"
+        map:uiTiltGestures="true"
+        map:uiZoomControls="false"
+        map:uiZoomGestures="true" /> -->
+
+</RelativeLayout>
