@@ -277,7 +277,7 @@ public class FacilityMainActivity extends Activity {
 		}
 
 
-		String url = "http://129.100.92.139:8080/web/getSpecifyCategoryFacility";
+		String url = "http://10.0.2.2:8080/web/getSpecifyCategoryFacility";
 		// String params = "fromDate=" + fromDate;
 		String params = "cid=" + cid + "&startid=" + startid + "&count="
 				+ EVENTCOUNT;

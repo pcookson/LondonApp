@@ -155,7 +155,7 @@ public class FacilityDetailsActivity extends Activity {
 		ArrayList<HashMap<String, Object>> busList = new ArrayList<HashMap<String, Object>>();
 		SyncHttp syncHttp = new SyncHttp();
 
-		String url = "http://129.100.92.139:8080/web/getBus";
+		String url = "http://10.0.2.2:8080/web/getBus";
 
 		String params = "facilityx=" + facilityXcoordStr + "&facilityy="
 				+ facilityYcoordStr;

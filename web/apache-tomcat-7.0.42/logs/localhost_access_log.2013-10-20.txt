@@ -1,0 +1,6 @@
+127.0.0.1 - - [20/Oct/2013:21:17:56 -0400] "GET / HTTP/1.1" 200 11444
+129.100.92.139 - - [20/Oct/2013:21:36:08 -0400] "GET /web/getSpecifyCategoryEvent?fromDate=20131021&cid=10&startid=0&count=10 HTTP/1.1" 200 199
+129.100.92.139 - - [20/Oct/2013:21:36:58 -0400] "GET /web/getSpecifyCategoryEvent?fromDate=20131021&cid=10&startid=0&count=10 HTTP/1.1" 200 2471
+129.100.92.139 - - [20/Oct/2013:23:43:18 -0400] "GET /web/getNews?urltitle=Suddenly-Last-Summer-by-Tennessee-Williams HTTP/1.1" 200 1221
+129.100.92.139 - - [20/Oct/2013:23:44:00 -0400] "GET /web/getSpecifyCategoryFacility?cid=01&startid=0&count=10 HTTP/1.1" 200 1312
+129.100.92.139 - - [20/Oct/2013:23:44:54 -0400] "GET /web/getSpecifyCategoryFacility?cid=01&startid=0&count=10 HTTP/1.1" 200 1312

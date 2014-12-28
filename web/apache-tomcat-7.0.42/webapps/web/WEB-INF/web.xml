@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<servlet>
+		<servlet-name>GetCategoriesServlet</servlet-name>
+		<servlet-class>ca.uwo.web.servlet.GetCategoriesServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetSpecifyCategoryEventServlet</servlet-name>
+		<servlet-class>ca.uwo.web.servlet.GetSpecifyCategoryEventServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetNewsServlet</servlet-name>
+		<servlet-class>ca.uwo.web.servlet.GetNewsServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetSpecifyCategoryFacilityServlet</servlet-name>
+		<servlet-class>ca.uwo.web.servlet.GetSpecifyCategoryFacilityServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>GetBusServlet</servlet-name>
+		<servlet-class>ca.uwo.web.servlet.GetBusServlet</servlet-class>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>GetCategoriesServlet</servlet-name>
+		<url-pattern>/getCategories</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetSpecifyCategoryEventServlet</servlet-name>
+		<url-pattern>/getSpecifyCategoryEvent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetNewsServlet</servlet-name>
+		<url-pattern>/getNews</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetSpecifyCategoryFacilityServlet</servlet-name>
+		<url-pattern>/getSpecifyCategoryFacility</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GetBusServlet</servlet-name>
+		<url-pattern>/getBus</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

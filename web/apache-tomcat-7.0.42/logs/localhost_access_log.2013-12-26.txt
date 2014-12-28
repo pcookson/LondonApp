@@ -1,0 +1,5 @@
+127.0.0.1 - - [26/Dec/2013:12:57:10 -0500] "GET / HTTP/1.1" 200 11444
+129.100.92.139 - - [26/Dec/2013:12:57:17 -0500] "GET /web/getSpecifyCategoryEvent?fromDate=201311&cid=0&startid=0&count=10 HTTP/1.1" 500 3304
+129.100.92.139 - - [26/Dec/2013:12:57:18 -0500] "GET /favicon.ico HTTP/1.1" 200 21630
+127.0.0.1 - - [26/Dec/2013:12:59:18 -0500] "GET / HTTP/1.1" 200 11444
+129.100.92.139 - - [26/Dec/2013:12:59:24 -0500] "GET /web/getSpecifyCategoryEvent?fromDate=201311&cid=0&startid=0&count=10 HTTP/1.1" 200 2663

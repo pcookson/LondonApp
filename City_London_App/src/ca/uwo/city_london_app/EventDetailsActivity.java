@@ -269,7 +269,7 @@ public class EventDetailsActivity extends Activity {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("operation failed！");
+			System.out.println("operation failedï¼�");
 			Toast.makeText(EventDetailsActivity.this,
 					"Saved failed, please check your SD card", Toast.LENGTH_SHORT).show();
 		} finally {
@@ -278,19 +278,19 @@ public class EventDetailsActivity extends Activity {
 
 	}
 
-	// 定义内部类--用于处理标题栏的按钮的触发事件
+	// å®šä¹‰å†…éƒ¨ç±»--ç”¨äºŽå¤„ç�†æ ‡é¢˜æ �çš„æŒ‰é’®çš„è§¦å�‘äº‹ä»¶
 	private class EventDetailOnClickListener implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			/*
-			 * switch (v.getId()) { //上一篇 case
-			 * R.id.eventdetail_titlebar_previous: showPrevious(); break; //下一篇
+			 * switch (v.getId()) { //ä¸Šä¸€ç¯‡ case
+			 * R.id.eventdetail_titlebar_previous: showPrevious(); break; //ä¸‹ä¸€ç¯‡
 			 * case R.id.eventdetail_titlebar_next: showNext(); break;
 			 * 
-			 * //收藏按钮 // case R.id.news_favorites_btn: //
-			 * Toast.makeText(EventDetailActivity.this, "收藏成功",
+			 * //æ”¶è—�æŒ‰é’® // case R.id.news_favorites_btn: //
+			 * Toast.makeText(EventDetailActivity.this, "æ”¶è—�æˆ�åŠŸ",
 			 * Toast.LENGTH_SHORT).show(); // break; }
 			 */
 
@@ -311,27 +311,27 @@ public class EventDetailsActivity extends Activity {
 
 			// TODO Auto-generated method stub
 			switch (event.getAction()) {
-			// 手指按下
+			// æ‰‹æŒ‡æŒ‰ä¸‹
 			case MotionEvent.ACTION_DOWN:
 				/*
 				 * if(keyboardShow){
 				 * mNewsReplyEditLayout.setVisibility(View.GONE);
-				 * mNewsReplyImgLayout.setVisibility(View.VISIBLE); //隐藏输入法
+				 * mNewsReplyImgLayout.setVisibility(View.VISIBLE); //éš�è—�è¾“å…¥æ³•
 				 * InputMethodManager m = (InputMethodManager)
 				 * mNewsReplyEditText
 				 * .getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 				 * m.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 				 * keyboardShow = false; }
 				 */
-				// 得到按下的横坐标的位置
+				// å¾—åˆ°æŒ‰ä¸‹çš„æ¨ªå��æ ‡çš„ä½�ç½®
 				mStartX = event.getX();
 				break;
 			case MotionEvent.ACTION_UP:
-				// 往左滑动
+				// å¾€å·¦æ»‘åŠ¨
 				if (event.getX() < mStartX) {
 					showNext();
 				}
-				// 往右滑动
+				// å¾€å�³æ»‘åŠ¨
 				else if (event.getX() > mStartX) {
 					showPrevious();
 				}
@@ -342,7 +342,7 @@ public class EventDetailsActivity extends Activity {
 	}
 
 	/**
-	 * 定义一个线程类，用来更新获取到新闻的信息
+	 * å®šä¹‰ä¸€ä¸ªçº¿ç¨‹ç±»ï¼Œç”¨æ�¥æ›´æ–°èŽ·å�–åˆ°æ–°é—»çš„ä¿¡æ�¯
 	 * 
 	 * @author Administrator
 	 * 
@@ -354,29 +354,29 @@ public class EventDetailsActivity extends Activity {
 			// TODO Auto-generated method stub
 			// System.out.println("format news body in thread");
 			ArrayList<HashMap<String, Object>> newsStr = getNewsBody();
-			Message msg = mHandler.obtainMessage(); // 获取msg
+			Message msg = mHandler.obtainMessage(); // èŽ·å�–msg
 			msg.arg1 = FINISH;
 			msg.obj = newsStr;
 			// System.out.println("news string=" + newsStr);
-			mHandler.sendMessage(msg); // 给Handler发送信息
+			mHandler.sendMessage(msg); // ç»™Handlerå�‘é€�ä¿¡æ�¯
 		}
 	}
 
 	/**
-	 * 获取新闻详细信息
+	 * èŽ·å�–æ–°é—»è¯¦ç»†ä¿¡æ�¯
 	 * 
 	 * @return
 	 */
 	private ArrayList<HashMap<String, Object>> getNewsBody() {
 		// System.out.println("get news body");
-		// String retStr = "网络连接失败,请稍后再试";
+		// String retStr = "ç½‘ç»œè¿žæŽ¥å¤±è´¥,è¯·ç¨�å�Žå†�è¯•";
 		ArrayList<HashMap<String, Object>> bodylist = new ArrayList<HashMap<String, Object>>();
 		SyncHttp syncHttp = new SyncHttp();
-		// 模拟器:url = "http://10.0.2.2:8080/web/getNews";
-		// 本机:http://127.0.0.1:8080
-		// wifi局域网:http://192.168.220.1:8080
+		// æ¨¡æ‹Ÿå™¨:url = "http://10.0.2.2:8080/web/getNews";
+		// æœ¬æœº:http://127.0.0.1:8080
+		// wifiå±€åŸŸç½‘:http://192.168.220.1:8080
 		// String url = "http://10.0.2.2:8080/web/getNews";
-		String url = "http://129.100.92.139:8080/web/getNews";
+		String url = "http://10.0.2.2:8080/web/getNews";
 		// String params = "nid=" + mNid;
 		// String params = "eventtitle=" + mEventTitle;
 		String params = "urltitle=" + mUrlTitle;
@@ -385,7 +385,7 @@ public class EventDetailsActivity extends Activity {
 			String retString = syncHttp.httpGet(url, params);
 			// System.out.println("what we get from url? = " + retString);
 			JSONObject jsonObject = new JSONObject(retString);
-			// 获取返回码，0表示成功
+			// èŽ·å�–è¿”å›žç �ï¼Œ0è¡¨ç¤ºæˆ�åŠŸ
 			int retCode = jsonObject.getInt("ret");
 			// System.out.println("ret code=" + retCode);
 			if (retCode == 0) {

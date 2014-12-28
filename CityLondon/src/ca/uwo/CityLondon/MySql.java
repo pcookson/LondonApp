@@ -10,7 +10,7 @@ import java.sql.Statement;
 public class MySql {
 
 	    public String driver = "com.mysql.jdbc.Driver";
-	    public String url = "jdbc:mysql://127.0.0.1:3306/htmldatacollection";
+	    public String url = "jdbc:mysql://127.0.0.1:3306/testdb";
 	    public String user = "root";
 	    public String password = "nintendo"; //patricks password
 	    public Statement stmt = null;

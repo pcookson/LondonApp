@@ -204,11 +204,11 @@ public class EventMainActivity extends Activity {
 				categoryTitle
 						.setBackgroundResource(R.drawable.image_categorybar_item_selected_background);
 
-				// UI悬浮效果
+				// UIæ‚¬æµ®æ•ˆæžœ
 				Toast.makeText(EventMainActivity.this, categoryTitle.getText(),
 						Toast.LENGTH_SHORT).show();
 
-				// 获取event分类编号以及名称
+				// èŽ·å�–eventåˆ†ç±»ç¼–å�·ä»¥å�Šå��ç§°
 				mCid = categories.get(position).get("category_title").getCid();
 				mCategoryTitle = categories.get(position).get("category_title")
 						.getTitle();
@@ -303,7 +303,7 @@ public class EventMainActivity extends Activity {
 		}
 
 
-		String url = "http://129.100.92.139:8080/web/getSpecifyCategoryEvent"; // real
+		String url = "http://10.0.2.2:8080/web/getSpecifyCategoryEvent"; // real
 		String params = "fromDate=" + fromDate + "&cid=" + cid + "&startid="
 				+ startid + "&count=" + EVENTCOUNT;
 		SyncHttp syncHttp = new SyncHttp();
