@@ -19,14 +19,19 @@ public class EventUrl{
 		ArrayList<String> urlList = new ArrayList<String>();  //define String type array list
 		
 	    try{
+	    	
 	        //Seed URL
-	        Document doc = Jsoup.connect("http://www.londontourism.ca/Events").get();
+	        Document doc = Jsoup.connect("http://www.londontourism.ca/Events")
+	        		.maxBodySize(0)
+	        		.userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
+	        		.get();
 	 
 	        //Find out all the child elements of ul#type_menu
-	        Elements items = doc.select("ul#type_menu");
+	       Elements items = doc.select("ul.navigation").select("li.three");
+	        //Elements items = doc.select("ul.menunav").select("div").select("ul");//.select("div.menu_sub_menu menushadow");
 	          //for each element, locate to tag "h3" elements
 	        for (Element item : items){
-	        	Elements links = item.select("li").select("h3");
+	        	Elements links = item.select("li");
 	        	//get URL of each category
 	        	for (Element link : links){
 	        		String linkHref = link.select("a").attr("href");
@@ -59,7 +64,10 @@ public class EventUrl{
 	    try{
 	        //page 1 event list in specific event type
 	    	String u = urlList.get(i);
-	        Document doc = Jsoup.connect(u).get();
+	        Document doc = Jsoup.connect(u)
+	        		.maxBodySize(0)
+	        		.userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
+	        		.get();
 	        
 	        //get event detail pages' url in event list page 1
 	        eventUrlListPerCat = getEventUrl(doc);
@@ -76,7 +84,10 @@ public class EventUrl{
 	            	//Format next event list page url
 	            	String urlNext = u + "/Page/" + k + ".html"; 
 	            	// parse next event list page
-	            	doc = Jsoup.connect(urlNext).get();
+	            	doc = Jsoup.connect(urlNext)
+	            			.maxBodySize(0)
+	    	        		.userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
+	    	        		.get();
 	            	
 	            	//get all the event detail pages' url and add to event detail url list
 	            	ArrayList<String> nextUrlList = new ArrayList<String>();      
@@ -124,11 +135,11 @@ public class EventUrl{
 	//get event detail page url from event list page
 	public static ArrayList<String> getEventUrl(Document doc) {
 		ArrayList<String> eventUrlListPerCat = new ArrayList<String>(); 
-        Elements items = doc.select("ul.listings");
+        Elements items = doc.select("ul.listing_details");
           //get url
         String linkHref = null;
         for (Element item : items){
-        	Elements links = item.select("div").select("h4");
+        	Elements links = item.select("div");
         	for (Element link : links){
         		linkHref = link.select("a").attr("href");
         		//add event detial url into event url list

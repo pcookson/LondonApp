@@ -3,6 +3,7 @@ package ca.uwo.CityLondon;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class EventParser {
 
@@ -10,14 +11,17 @@ public class EventParser {
 	public void parseEventDetail(String url) {
 
 		try {
-			Document doc = Jsoup.connect(url).get();
+			Document doc = Jsoup.connect(url)
+					.maxBodySize(0)
+	        		.userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
+	        		.get();
 
 			EventDataStructure ds = new EventDataStructure();
 			MySql ms = new MySql();
 			String sqlInsertEvent = "";
 
 			// Event Title
-			Element title = doc.select(".indent_div").select("h4").first();
+			Element title = doc.select("div.details_container.bigger_nav").select("h2").first();
 			String eventTitle = title.text();
 			if (eventTitle.indexOf("'") != -1) {// check if there is '
 				ds.title = eventTitle.replace("'", "''");
@@ -25,15 +29,27 @@ public class EventParser {
 				ds.title = eventTitle;
 
 
+			//Contact Information
+			String phoneNumber = "";
 			// Event Phone
-			Element item = doc.select(".phone").first();
-			String phoneNumber = item.attr("href");
-			ds.phoneNumber = phoneNumber.substring(4);
+			Elements item = doc.select("div.details_container.bigger_nav").select("div.information").select("ul.contact").select("li");
+			for(Element el : item){
+				String telephone = el.childNode(1).toString();
+				if(telephone.equals("<span>Telephone:</span>")){
+					phoneNumber = el.nextElementSibling().childNode(2).toString();
+					break;
+				}
+				//System.out.println();
+				
+			}
+			//Element item = doc.select(".phone").first();
+			
+			ds.phoneNumber = phoneNumber;
 
 
 
 			// Event Date
-			Element date = doc.select(".event_date").first();
+			Element date = doc.select("div.details_container.bigger_nav").select("div.date_information").select("p").first();
 			String eventDate = date.text();
 			// System.out.println(eventDate);
 
@@ -83,7 +99,7 @@ public class EventParser {
 				// Different months
 				else {
 					String eventMonthFromEng = arr[0];
-					String eventMonthToEng = arr[3];
+					String eventMonthToEng = arr[4];
 					eventMonthFrom = MonthConv(eventMonthFromEng);
 					eventMonthTo = MonthConv(eventMonthToEng);
 
@@ -96,7 +112,7 @@ public class EventParser {
 					}
 
 					// format event to day
-					String toDayTemp = arr[4].substring(0, arr[4].length() - 1);
+					String toDayTemp = arr[5];
 					if (toDayTemp.length() == 1) {
 						toDay = zero.concat(toDayTemp);
 					} else {
@@ -132,20 +148,22 @@ public class EventParser {
 
 
 			// Event Address
-			Element location = doc.select(".address").first();
-			String eventAddress = location.select(".address_details").text();
-			String eventLocation = location.select("p").select(":eq(1)")
-					.first().text();
+			Element location = doc.select("div.information").select("p.address").select("p").first();
+			String addr1 = location.childNode(2).toString();
+			String addr2 = location.childNode(4).toString();
+			String eventAddress = addr1 + addr2;
+			String eventLocation = location.childNode(0).toString();
 
 
-			ds.address = eventLocation.substring(10) + "\n" + eventAddress;
+			ds.address = eventLocation + "\n" + eventAddress;
 //Added on 13Nov.
-			if (ds.address.indexOf("'") != -1) // check if '
-				ds.description = ds.address.replace("'", "''");
+			//if (ds.address.indexOf("'") != -1) // check if '
+				//ds.description = ds.address.replace("'", "''");
 //13Nov
 			
 			// Event Description
-			Element description = doc.select(".main_description").first();
+			Element description = doc.select("div.description").select("p").first();
+			
 			String eventDescription = description.text();
 			// test code
 			// System.out.println(eventDescription);
@@ -155,14 +173,14 @@ public class EventParser {
 				ds.description = eventDescription;
 
 			// Event Photo
-			Element image = doc.select(".photo").select("img").first();
+			Element image = doc.select("ul#mediashow").select("li").select("img").first();
 			String imgUrl = image.absUrl("src");
 			ds.photo = imgUrl;
 
 			// Event url title
 			ds.eventUrlTitle = url.substring(url.lastIndexOf("/") + 1);
 			// test code
-			// System.out.println(imgUrl);
+			//System.out.println(imgUrl);
 
 			// initiate connection
 			ms.intMySql();

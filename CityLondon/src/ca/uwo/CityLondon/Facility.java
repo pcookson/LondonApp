@@ -54,8 +54,11 @@ public class Facility {
 					//download the excel file to PC and get file object
 					File f = DownloadExcel.downLoadFile(n, u);
 					//parse the excel file object and store into Mysql
+					if(n.equals("London Transit Bus Stops (Sept 2011)")){
+						System.out.println("oops");
+					}
 					ExcelReader.parseFacilityDetail(n, f);
-
+					
 					break;
 				}
 
