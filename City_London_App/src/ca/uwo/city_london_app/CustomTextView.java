@@ -46,7 +46,7 @@ public class CustomTextView extends LinearLayout {
 						R.styleable.constomTextView_image_height, 100);
 				ImageView imageView = new ImageView(mContext);
 				params = new LayoutParams(imagewidth, imageheight);
-				params.gravity = Gravity.CENTER_HORIZONTAL; // æ”÷–
+				params.gravity = Gravity.CENTER_HORIZONTAL; // Ã¦â€�Ã·â€“
 				imageView.setLayoutParams(params);
 				imageView.setImageResource(R.drawable.image_loading);
 				imageView.setScaleType(ScaleType.CENTER_INSIDE);

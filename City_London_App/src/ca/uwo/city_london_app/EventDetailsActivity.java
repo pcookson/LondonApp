@@ -376,7 +376,7 @@ public class EventDetailsActivity extends Activity {
 		// æœ¬æœº:http://127.0.0.1:8080
 		// wifiå±€åŸŸç½‘:http://192.168.220.1:8080
 		// String url = "http://10.0.2.2:8080/web/getNews";
-		String url = "http://10.0.2.2:8080/web/getNews";
+		String url = "http://192.168.0.13:8080/web/getNews";
 		// String params = "nid=" + mNid;
 		// String params = "eventtitle=" + mEventTitle;
 		String params = "urltitle=" + mUrlTitle;

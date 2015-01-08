@@ -8,23 +8,23 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.widget.TextView;
 import ca.uwo.city_london_app.Service.SyncHttp;
 
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class FacilityDetailsActivity extends Activity {
+public class FacilityDetailsActivity extends FragmentActivity {
 
 	private ArrayList<HashMap<String, Object>> mFacilityData;
 	private int mPosition = 0; 
@@ -37,6 +37,8 @@ public class FacilityDetailsActivity extends Activity {
 	private double facilityYcoord = 0.0;
 	private final int FINISH = 0; 
 	private int busCount = 0; 
+	
+	
 	GoogleMap mMap;
 
 	@SuppressLint("HandlerLeak")
@@ -61,21 +63,22 @@ public class FacilityDetailsActivity extends Activity {
 
 					for (int i = 0; i < busCount; i++) {
 						hashMap = busList.get(i);
-						String stopNumber = (String) hashMap.get("stop_number");
-						String stopName = (String) hashMap.get("stop_name");
-						String stopBus = (String) hashMap.get("bus");
+						//String stopNumber = (String) hashMap.get("stop_number");
+						//String stopName = (String) hashMap.get("stop_name");
+						//String stopBus = (String) hashMap.get("bus");
 						double stopXcoord = (Double) hashMap.get("stop_xcoord");
 						double stopYcoord = (Double) hashMap.get("stop_ycoord");
 	
 
 						// add marker
+						
 						MarkerOptions markerOpt = new MarkerOptions();
 						markerOpt.position(new LatLng(stopYcoord, stopXcoord));
-						markerOpt.title("Stop "
-								+ stopNumber.replaceAll(".0", "") + ": "
-								+ stopName);
-						markerOpt.snippet("Bus: "
-								+ stopBus.replaceAll(".0", ""));
+						//markerOpt.title("Stop "
+							//	+ stopNumber.replaceAll(".0", "") + ": "
+								//+ stopName);
+						//markerOpt.snippet("Bus: "
+								//+ stopBus.replaceAll(".0", ""));
 						markerOpt
 								.icon(BitmapDescriptorFactory
 										.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
@@ -116,9 +119,10 @@ public class FacilityDetailsActivity extends Activity {
 		facilityXcoord = Double.parseDouble(facilityXcoordStr);
 		facilityYcoord = Double.parseDouble(facilityYcoordStr);
 
-
-		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-				.getMap();
+		FragmentManager frag = getSupportFragmentManager();
+        SupportMapFragment mySupportMapFragment 
+        = (SupportMapFragment)frag.findFragmentById(R.id.map);
+		mMap = mySupportMapFragment.getMap();
 
 		LatLng nkut = new LatLng(facilityYcoord, facilityXcoord);
 		mMap.moveCamera(CameraUpdateFactory.newLatLng(nkut));
@@ -132,7 +136,7 @@ public class FacilityDetailsActivity extends Activity {
 
 		mMap.addMarker(markerOpt);
 
-		new GetBusThread().start();
+		//new GetBusThread().start();
 
 	}
 
@@ -155,7 +159,7 @@ public class FacilityDetailsActivity extends Activity {
 		ArrayList<HashMap<String, Object>> busList = new ArrayList<HashMap<String, Object>>();
 		SyncHttp syncHttp = new SyncHttp();
 
-		String url = "http://10.0.2.2:8080/web/getBus";
+		String url = "http://192.168.0.13:8080/web/getBus";
 
 		String params = "facilityx=" + facilityXcoordStr + "&facilityy="
 				+ facilityYcoordStr;

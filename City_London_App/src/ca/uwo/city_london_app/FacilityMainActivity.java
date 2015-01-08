@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -277,7 +278,7 @@ public class FacilityMainActivity extends Activity {
 		}
 
 
-		String url = "http://10.0.2.2:8080/web/getSpecifyCategoryFacility";
+		String url = "http://192.168.0.13:8080/web/getSpecifyCategoryFacility";
 		// String params = "fromDate=" + fromDate;
 		String params = "cid=" + cid + "&startid=" + startid + "&count="
 				+ EVENTCOUNT;

@@ -303,7 +303,7 @@ public class EventMainActivity extends Activity {
 		}
 
 
-		String url = "http://10.0.2.2:8080/web/getSpecifyCategoryEvent"; // real
+		String url = "http://192.168.0.13:8080/web/getSpecifyCategoryEvent"; // real
 		String params = "fromDate=" + fromDate + "&cid=" + cid + "&startid="
 				+ startid + "&count=" + EVENTCOUNT;
 		SyncHttp syncHttp = new SyncHttp();
