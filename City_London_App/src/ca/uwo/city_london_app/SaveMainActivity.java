@@ -2,6 +2,7 @@ package ca.uwo.city_london_app;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class SaveMainActivity extends Activity {
 	private ArrayList<HashMap<String, Object>> mEventData; 
 	private Button mTitleBarRefresh; 
 	private Button mTitleBarClear; 
-	private SQLiteDatabase mysql;
+	private SQLiteDatabase sql_lite;
 	String TABLE_NAME = "saved_event";
 
 	@Override
@@ -64,10 +65,10 @@ public class SaveMainActivity extends Activity {
 
 		mEventlistAdapter = new SimpleAdapter(this, mEventData,
 				R.layout.eventlist_item_layout, new String[] {
-						"eventlist_item_title", "eventlist_item_date",
-						"eventlist_item_location" }, new int[] {
-						R.id.eventlist_item_title, R.id.eventlist_item_date,
-						R.id.eventlist_item_location });
+				"eventlist_item_title", "eventlist_item_date",
+		"eventlist_item_location" }, new int[] {
+				R.id.eventlist_item_title, R.id.eventlist_item_date,
+				R.id.eventlist_item_location });
 		mEventlist = (ListView) findViewById(R.id.event_list);
 
 		mEventlist.setAdapter(mEventlistAdapter);
@@ -100,9 +101,9 @@ public class SaveMainActivity extends Activity {
 
 		File f = new File(dbPath + "/" + "event.db");
 		try {
-			mysql = SQLiteDatabase.openOrCreateDatabase(f, null);
+			sql_lite = SQLiteDatabase.openOrCreateDatabase(f, null);
 
-			Cursor cur = mysql.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+			Cursor cur = sql_lite.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 			if (cur != null) {
 				if (cur.getCount() == 0)
 					Toast.makeText(SaveMainActivity.this, "No saved event",
@@ -118,8 +119,39 @@ public class SaveMainActivity extends Activity {
 					hashMap.put("eventlist_item_phone", cur.getString(4));
 					hashMap.put("eventlist_item_location", cur.getString(5));
 					hashMap.put("event_body", cur.getString(6));
-					String eventDate = "From Date:" + cur.getString(2)
-							+ "    To Date:" + cur.getString(3);
+					String eventDate = null;
+
+					String yearFrom = ((String) hashMap.get("eventlist_item_fromdate")).substring(0, 4);
+					String monthFrom = ((String) hashMap.get("eventlist_item_fromdate")).substring(4, 6);
+					String dayFrom =((String) hashMap.get("eventlist_item_fromdate")).substring(6);
+					
+					
+					/*Calendar cal = Calendar.getInstance();
+					cal.clear();
+					cal.set(Integer.valueOf(yearFrom), Integer.valueOf(monthFrom) - 1, Integer.valueOf(dayFrom));
+					
+					Intent intent = new Intent(Intent.ACTION_EDIT);
+					intent.setType("vnd.android.cursor.item/event");
+					intent.putExtra("beginTime", cal.getTimeInMillis());
+					intent.putExtra("allDay", true);
+					//intent.putExtra("rrule", "FREQ=YEARLY");
+					//intent.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
+					intent.putExtra("title", (String)hashMap.get("eventlist_item_title"));
+					startActivity(intent);*/
+					
+					String yearTo = null;
+
+
+					if(((String) hashMap.get("eventlist_item_todate")).substring(4, 8).equals("null")){
+						yearTo = ((String) hashMap.get("eventlist_item_todate")).substring(0, 4);
+						eventDate = cur.getString(2);
+					}else{
+						yearTo = ((String) hashMap.get("eventlist_item_todate")).substring(0, 4);
+						eventDate = "From Date:" + cur.getString(2)
+								+ " To Date: " + cur.getString(3);
+					}
+
+
 					hashMap.put("eventlist_item_date", eventDate);
 					eventList.add(hashMap);
 				}
@@ -128,10 +160,10 @@ public class SaveMainActivity extends Activity {
 				return NOEVENT;
 
 		} catch (Exception e) {
-			System.out.println("operation failed！");
+			System.out.println("operation failed");
 			return LOADERROR; 
 		} finally {
-			mysql.close();
+			sql_lite.close();
 		}
 	}
 
@@ -146,11 +178,11 @@ public class SaveMainActivity extends Activity {
 				mEventlistAdapter = new SimpleAdapter(SaveMainActivity.this,
 						mEventData, R.layout.eventlist_item_layout,
 						new String[] { "eventlist_item_title",
-								"eventlist_item_date",
-								"eventlist_item_location" }, new int[] {
-								R.id.eventlist_item_title,
-								R.id.eventlist_item_date,
-								R.id.eventlist_item_location });
+						"eventlist_item_date",
+				"eventlist_item_location" }, new int[] {
+						R.id.eventlist_item_title,
+						R.id.eventlist_item_date,
+						R.id.eventlist_item_location });
 				mEventlist = (ListView) findViewById(R.id.event_list);
 				mEventlist.setAdapter(mEventlistAdapter);
 			} else if (v.getId() == R.id.savemain_titlebar_clear) {
@@ -161,17 +193,17 @@ public class SaveMainActivity extends Activity {
 				File f = new File(dbPath + "/" + "event.db");
 
 				try {
-					
-					mysql = SQLiteDatabase.openOrCreateDatabase(f, null);
+
+					sql_lite = SQLiteDatabase.openOrCreateDatabase(f, null);
 
 					// read
-					mysql.execSQL("DELETE FROM " + TABLE_NAME + ";");
-					Toast.makeText(SaveMainActivity.this, "Save event cleared",
+					sql_lite.execSQL("DELETE FROM " + TABLE_NAME + ";");
+					Toast.makeText(SaveMainActivity.this, "Saved events cleared",
 							Toast.LENGTH_SHORT).show();
 				} catch (Exception e) {
-					System.out.println("operation failed！");
+					System.out.println("operation failed");
 				} finally {
-					mysql.close();
+					sql_lite.close();
 				}
 
 				getSpecCatEvent(mEventData);
@@ -179,11 +211,11 @@ public class SaveMainActivity extends Activity {
 				mEventlistAdapter = new SimpleAdapter(SaveMainActivity.this,
 						mEventData, R.layout.eventlist_item_layout,
 						new String[] { "eventlist_item_title",
-								"eventlist_item_date",
-								"eventlist_item_location" }, new int[] {
-								R.id.eventlist_item_title,
-								R.id.eventlist_item_date,
-								R.id.eventlist_item_location });
+						"eventlist_item_date",
+				"eventlist_item_location" }, new int[] {
+						R.id.eventlist_item_title,
+						R.id.eventlist_item_date,
+						R.id.eventlist_item_location });
 				mEventlist = (ListView) findViewById(R.id.event_list);
 				mEventlist.setAdapter(mEventlistAdapter);
 			}

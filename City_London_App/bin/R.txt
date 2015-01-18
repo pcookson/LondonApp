@@ -376,6 +376,7 @@ int menu facility_details 0x7f0d0002
 int menu facility_main 0x7f0d0003
 int menu main 0x7f0d0004
 int raw gtm_analytics 0x7f050000
+int string Evrnts 0x7f070038
 int string accept 0x7f070002
 int string action_settings 0x7f070032
 int string app_name 0x7f070023

@@ -4,6 +4,7 @@ package ca.uwo.city_london_app;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -266,10 +267,30 @@ public class EventDetailsActivity extends Activity {
 					Toast.makeText(EventDetailsActivity.this,
 							"Saved successfully!", Toast.LENGTH_SHORT).show();
 					System.out.println("saved successfully");
+					
+					//Opens calendar instance so user can add event to their calendar
+					String yearFrom = mEventFromDate.substring(0, 4);
+					String monthFrom = mEventFromDate.substring(4, 6);
+					String dayFrom = mEventFromDate.substring(6);
+					
+					
+					Calendar cal = Calendar.getInstance();
+					cal.clear();
+					cal.set(Integer.valueOf(yearFrom), Integer.valueOf(monthFrom) - 1, Integer.valueOf(dayFrom));
+					
+					Intent intent = new Intent(Intent.ACTION_INSERT);
+					intent.setType("vnd.android.cursor.item/event");
+					intent.putExtra("beginTime", cal.getTimeInMillis());
+					intent.putExtra("allDay", true);
+					//intent.putExtra("rrule", "FREQ=YEARLY");
+					//intent.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
+					intent.putExtra("title", mNewsTitle);
+					startActivity(intent);
+										
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("operation failedï¼�");
+			System.out.println("operation failed");
 			Toast.makeText(EventDetailsActivity.this,
 					"Saved failed, please check your SD card", Toast.LENGTH_SHORT).show();
 		} finally {

@@ -10,15 +10,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-	ImageButton facility;
-	ImageButton event;
-	ImageButton saveItem;
+	Button facility;
+	Button event;
+	Button saveItem;
 
-	private SQLiteDatabase mysql;
+	private SQLiteDatabase sql_lite;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
 
 		try {
 			
-			mysql = SQLiteDatabase.openOrCreateDatabase(f, null);
+			sql_lite = SQLiteDatabase.openOrCreateDatabase(f, null);
 
 			String TABLE_NAME = "saved_event";
 			String TITLE = "title";
@@ -61,18 +61,18 @@ public class MainActivity extends Activity {
 					+ TITLE + "," + URLTITLE + "," + FROMDATE + "," + TODATE
 					+ "," + ADDRESS + "," + PHONE + "," + DESCRIPTION + ","
 					+ "PRIMARY KEY (" + URLTITLE + ")" + ");";
-			mysql.execSQL(str_sql2);
-			System.out.println("新建表成功！点击查看数据库查询");
+			sql_lite.execSQL(str_sql2);
+			System.out.println("sql lite database created for saved events");
 
 		} catch (Exception e) {
-			System.out.println("操作失败！");
+			System.out.println("An exception creating sql lite database has occurred");
 		} finally {
-			mysql.close();
+			sql_lite.close();
 		}
 
-		facility = (ImageButton) findViewById(R.id.facility);
-		event = (ImageButton) findViewById(R.id.event);
-		saveItem = (ImageButton) findViewById(R.id.saveItem);
+		facility = (Button) findViewById(R.id.facility);
+		event = (Button) findViewById(R.id.event);
+		saveItem = (Button) findViewById(R.id.saveItem);
 
 		EventButtonListener eventyButtonListener = new EventButtonListener();
 		event.setOnClickListener(eventyButtonListener);

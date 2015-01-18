@@ -24,5 +24,6 @@
     <string name="title_activity_facility_details">FacilityDetailsActivity</string>
     <string name="title_activity_save_main">FacilityMainActivity</string>
     <string name="title_activity_save_details">FacilityMainActivity</string>
+    <string name="Evrnts"></string>
 
 </resources>
