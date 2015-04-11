@@ -299,21 +299,13 @@ public class EventDetailsActivity extends Activity {
 
 	}
 
-	// å®šä¹‰å†…éƒ¨ç±»--ç”¨äºŽå¤„ç�†æ ‡é¢˜æ �çš„æŒ‰é’®çš„è§¦å�‘äº‹ä»¶
+
 	private class EventDetailOnClickListener implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			/*
-			 * switch (v.getId()) { //ä¸Šä¸€ç¯‡ case
-			 * R.id.eventdetail_titlebar_previous: showPrevious(); break; //ä¸‹ä¸€ç¯‡
-			 * case R.id.eventdetail_titlebar_next: showNext(); break;
-			 * 
-			 * //æ”¶è—�æŒ‰é’® // case R.id.news_favorites_btn: //
-			 * Toast.makeText(EventDetailActivity.this, "æ”¶è—�æˆ�åŠŸ",
-			 * Toast.LENGTH_SHORT).show(); // break; }
-			 */
+			
+			
 
 			if (v.getId() == R.id.eventdetail_titlebar_previous)
 				showPrevious();
@@ -330,9 +322,9 @@ public class EventDetailsActivity extends Activity {
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
 
-			// TODO Auto-generated method stub
+
 			switch (event.getAction()) {
-			// æ‰‹æŒ‡æŒ‰ä¸‹
+
 			case MotionEvent.ACTION_DOWN:
 				/*
 				 * if(keyboardShow){
@@ -344,15 +336,15 @@ public class EventDetailsActivity extends Activity {
 				 * m.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 				 * keyboardShow = false; }
 				 */
-				// å¾—åˆ°æŒ‰ä¸‹çš„æ¨ªå��æ ‡çš„ä½�ç½®
+
 				mStartX = event.getX();
 				break;
 			case MotionEvent.ACTION_UP:
-				// å¾€å·¦æ»‘åŠ¨
+
 				if (event.getX() < mStartX) {
 					showNext();
 				}
-				// å¾€å�³æ»‘åŠ¨
+
 				else if (event.getX() > mStartX) {
 					showPrevious();
 				}
@@ -363,7 +355,7 @@ public class EventDetailsActivity extends Activity {
 	}
 
 	/**
-	 * å®šä¹‰ä¸€ä¸ªçº¿ç¨‹ç±»ï¼Œç”¨æ�¥æ›´æ–°èŽ·å�–åˆ°æ–°é—»çš„ä¿¡æ�¯
+
 	 * 
 	 * @author Administrator
 	 * 
@@ -379,7 +371,7 @@ public class EventDetailsActivity extends Activity {
 			msg.arg1 = FINISH;
 			msg.obj = newsStr;
 			// System.out.println("news string=" + newsStr);
-			mHandler.sendMessage(msg); // ç»™Handlerå�‘é€�ä¿¡æ�¯
+			mHandler.sendMessage(msg); 
 		}
 	}
 
